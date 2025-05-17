@@ -1,53 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Interactive Question</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 40px;
-  }
-  button {
-    margin: 10px 10px 0 0;
-    padding: 10px 20px;
-    font-size: 16px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Question</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 40px;
+      background: #f0f8ff;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #container {
+      text-align: center;
+      max-width: 400px;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 1s ease;
+    }
+
+    p {
+      font-size: 24px;
+      animation: slideFade 0.6s ease;
+    }
+
+    button {
+      margin: 10px 10px 0 0;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    @keyframes slideFade {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
-<div id="container">
-  <p id="question">You are Soshi, right?</p>
-  <button id="yesBtn">Yes</button>
-  <button id="noBtn">No</button>
-</div>
+  <div id="container">
+    <p id="question">You are Soshi, right?</p>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
 
-<script>
-  const container = document.getElementById('container');
-  const question = document.getElementById('question');
-  const yesBtn = document.getElementById('yesBtn');
-  const noBtn = document.getElementById('noBtn');
+  <script>
+    const question = document.getElementById('question');
+    const yesBtn = document.getElementById('yesBtn');
+    const noBtn = document.getElementById('noBtn');
 
-  yesBtn.onclick = () => {
-    question.textContent = "Saif wants to tell you something, want to see?";
-    // Change buttons for this question
-    yesBtn.textContent = "Yes";
-    noBtn.style.display = "none";
+    const changeQuestion = (text) => {
+      question.style.animation = 'none';
+      question.offsetHeight; // force reflow
+      question.style.animation = null;
+      question.textContent = text;
+    };
 
     yesBtn.onclick = () => {
-      question.textContent = "Saif Loves You So Much";
-      yesBtn.style.display = "none";
-    };
-  };
+      changeQuestion("Saif wants to tell you something, want to see?");
+      yesBtn.textContent = "Yes";
+      noBtn.style.display = "none";
 
-  noBtn.onclick = () => {
-    question.textContent = "Hi Apu";
-    yesBtn.style.display = "none";
-    noBtn.style.display = "none";
-  };
-</script>
+      yesBtn.onclick = () => {
+        changeQuestion("Saif Loves You So Much");
+        yesBtn.style.display = "none";
+      };
+    };
+
+    noBtn.onclick = () => {
+      changeQuestion("Hi Apu");
+      yesBtn.style.display = "none";
+      noBtn.style.display = "none";
+    };
+  </script>
 
 </body>
 </html>
