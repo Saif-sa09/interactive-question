@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Interactive Question</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+  }
+  button {
+    margin: 10px 10px 0 0;
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <p id="question">You are Soshi, right?</p>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+</div>
+
+<script>
+  const container = document.getElementById('container');
+  const question = document.getElementById('question');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+
+  yesBtn.onclick = () => {
+    question.textContent = "Saif wants to tell you something, want to see?";
+    // Change buttons for this question
+    yesBtn.textContent = "Yes";
+    noBtn.style.display = "none";
+
+    yesBtn.onclick = () => {
+      question.textContent = "Saif Loves You So Much";
+      yesBtn.style.display = "none";
+    };
+  };
+
+  noBtn.onclick = () => {
+    question.textContent = "Hi Apu";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+  };
+</script>
+
+</body>
+</html>
